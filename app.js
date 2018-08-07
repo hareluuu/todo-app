@@ -5,6 +5,7 @@ const clearButton = document.querySelector(".clear")
 const filter = document.querySelector("#filter");
 
 
+document.getElementById("task-list").innerHTML = localStorage.getItem("tasks")
 
 const addTask = (e) => {
 
@@ -24,6 +25,8 @@ const addTask = (e) => {
         taskList.appendChild(li);
         taskInput.value = "";
 
+        const tasks = document.getElementById("task-list").innerHTML
+        localStorage.setItem("tasks", tasks)
 
         e.preventDefault();
     }
@@ -36,11 +39,19 @@ const deleteTask = (e) => {
     if (e.target.classList.contains("delete-item")) {
         e.target.parentElement.remove();
     }
+
+    const tasks = document.getElementById("task-list").innerHTML
+    localStorage.setItem("tasks", tasks)
+
 }
 
 const clearTasks = (e) => {
 
     taskList.innerHTML = "";
+
+    const tasks = document.getElementById("task-list").innerHTML
+    localStorage.setItem("tasks", tasks)
+
 }
 
 const filterTasks = (e) => {
@@ -55,6 +66,9 @@ const filterTasks = (e) => {
     })
     
 }
+
+
+
 
 form.addEventListener("submit", addTask);
 
